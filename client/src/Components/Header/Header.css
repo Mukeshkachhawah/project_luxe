@@ -1,0 +1,39 @@
+.con {
+  display: flex;
+  justify-content: end;
+}
+.signIn {
+  letter-spacing: 1.6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.signIn:hover {
+  text-decoration: underline;
+}
+.modal-content {
+  color: #454545;
+  box-sizing: border-box;
+  padding: 0;
+  font: inherit;
+  vertical-align: baseline;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background-clip: padding-box;
+  outline: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  background-image: url(https://assets.ajio.com/static/img/catnav_mob_bg.png);
+  background-repeat: repeat-x;
+  text-transform: none;
+  text-align: left;
+  letter-spacing: 0;
+  width: 410px;
+  margin: 0 auto;
+  overflow: auto;
+  min-height: 600px;
+  height: 740px;
+}
