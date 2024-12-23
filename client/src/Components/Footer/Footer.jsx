@@ -17,7 +17,7 @@ const Footer = () => {
         {/* AJIO Section */}
         <Grid item xs={12} sm={6} md={3} textAlign="center">
           <Typography variant="h6" sx={{ fontWeight: 600, marginBottom: 2 }}>
-            EASIER
+            Luxe
           </Typography>
           {[
             { name: "Who We Are", link: "/who-we-are" },

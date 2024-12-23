@@ -4,7 +4,6 @@ import Home from "./Pages/Home/Home";
 import ShopCategory from "./Pages/Women/WomenProductPage";
 import ProductCheckOut from "./Pages/Women/ProductCheckOut";
 import TrackOrder from "./Pages/TrackOrder/TrackOrder";
-import SignUpPage from "./Pages/Login&SignUp/SignUpPage";
 import Love from "./Pages/LoveProducts/Love";
 import ContactDetail from "./Pages/ContactDetails/ContactDetail";
 import FaqPage from "./Pages/FAQ-Page/FaqPage";
@@ -13,6 +12,9 @@ import MenProductPage from "./Pages/Men-Products/MenProductPage";
 import BeautyPage from "./Pages/Beauty-Product-Page/BeautyPage";
 import ProductDetail from "./Components/ProductDetails/ProductDetails";
 import WomenProductPage from "./Pages/Women/WomenProductPage";
+import UserProfilePage from "./Pages/UserProfilePage";
+import SignInPage from "./forms/Sign-In/SignInForm";
+import SignUp from "./forms/Sign-Up/SignUp";
 
 const App = () => {
   return (
@@ -27,10 +29,12 @@ const App = () => {
         <Route path="/productdetail/_id" element={<ProductDetail />} />
         <Route path="/order-tracking" element={<TrackOrder />} />
         <Route path="/contact-page" element={<ContactDetail />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/love-product" element={<Love />} />
         <Route path="/faq-page" element={<FaqPage />} />
         <Route path="/cart-page" element={<CartPage />} />
+        <Route path="/user-profile" element={<UserProfilePage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </Router>
   );

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import SingleProductCart from "./../SingleProductCart/SingleProductCart";
 import {
   Box,
   Grid,
@@ -7,8 +8,6 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
-import SingleProductCart from "../SingleProductCart/SingleProductCart";
-import "./ProductCategory.css";
 
 const WomenProduct = ({ search }) => {
   const [products, setProducts] = useState([]);

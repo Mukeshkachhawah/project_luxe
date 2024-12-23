@@ -6,10 +6,12 @@ import FeatureProducts from "../../Components/FeatureProducts/FeatureProducts";
 import Discount from "../../Components/Discount/Discount";
 import InspiredProduct from "./../../Components/InspiredProduct/InspiredProduct";
 import LatestBlog from "../../Components/LatestBlog/LatestBlog";
+import Header from "../../Components/Header/Header";
 
 const Home = () => {
   return (
     <>
+      <Header />
       <HeaderMain />
       <Banner />
       <FeatureBox />

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { Grid, Typography, Box, CircularProgress } from "@mui/material";
+import { Grid, Box, CircularProgress } from "@mui/material";
 import SingleProductCart from "../SingleProductCart/SingleProductCart";
 
 // Dummy API URL
-const API_URL = "http://localhost:8000/products";
+const API_URL = "http://localhost:8000/men";
 
 const MenProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetching products data from the API using async/await
   const fetchProducts = async () => {
     try {
       const response = await fetch(API_URL);
@@ -41,7 +40,7 @@ const MenProducts = () => {
         </Box>
       ) : (
         <Grid container spacing={4}>
-          {products.map((product, index) => (
+          {products.map((product) => (
             <Grid item xs={12} sm={6} md={4} key={product.id}>
               <SingleProductCart product={product} />
             </Grid>

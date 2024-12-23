@@ -3,7 +3,7 @@ import { Grid, Typography, Box, CircularProgress } from "@mui/material";
 import SingleProductCart from "../SingleProductCart/SingleProductCart";
 
 // Dummy API URL for beauty products
-const BEAUTY_API_URL = "http://localhost:8000/products";
+const BEAUTY_API_URL = "http://localhost:8000/beauty";
 
 const BeautyProducts = () => {
   const [beautyProducts, setBeautyProducts] = useState([]);
