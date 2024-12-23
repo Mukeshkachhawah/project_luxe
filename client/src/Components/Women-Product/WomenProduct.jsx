@@ -15,7 +15,7 @@ const WomenProduct = ({ search }) => {
   const [sort, setSort] = useState("");
   const [loading, setLoading] = useState(true); // Loading state
 
-  const url = "http://localhost:8000/products/random";
+  const url = "http://localhost:8000/api/admin/products/women";
 
   useEffect(() => {
     const fetchData = async (url) => {
@@ -25,7 +25,7 @@ const WomenProduct = ({ search }) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setProducts(data);
+        setProducts(data.data);
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         setError(error.message);

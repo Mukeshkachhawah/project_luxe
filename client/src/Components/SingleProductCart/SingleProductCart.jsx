@@ -15,10 +15,7 @@ const SingleProductCart = ({ product }) => {
         width: "303px", // Fixed width
         height: "auto", // Fixed height
         position: "relative", // To position Quick View on image hover
-
         transition: "all 0.3s ease-in-out", // Smooth transition
-        backgroundColor: "#fff",
-        border: "1px solid #f1f1f1", // Soft border for a premium feel
       }}
       onClick={() => navigate(`/productdetail/${product.id}`)}
     >
@@ -176,18 +173,6 @@ const SingleProductCart = ({ product }) => {
           </Typography>
         )}
       </CardContent>
-
-      {/* Action Buttons */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around", // Distribute icons evenly
-          padding: 2,
-          backgroundColor: "#f8f8f8", // Light background for the action area
-          borderTop: "1px solid #eee", // Light border to separate actions
-          borderRadius: "0 0 8px 8px",
-        }}
-      ></Box>
     </Card>
   );
 };

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Button, Typography, IconButton, Box } from "@mui/material";
 import {
   Add,
@@ -9,12 +10,31 @@ import {
 } from "@mui/icons-material";
 
 const ProductDetails = () => {
+  const { product_id } = useParams(); // Get product_id from the URL params
+  const [product, setProduct] = useState(null);
   const [sliderPos, setSliderPos] = useState(0);
   const [qty, setQty] = useState(1);
+
   const productPrice = 125;
   const totalSliderItems = 4;
-
   const [totalPrice, setTotalPrice] = useState(productPrice);
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/admin/products/${product_id}`
+        );
+        if (!response.ok) throw new Error("Failed to fetch product details");
+        const data = await response.json();
+        setProduct(data.data); // Set product data when fetched
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProductDetails();
+  }, [product_id]);
 
   const slideToNext = () => {
     if (sliderPos < totalSliderItems - 1) {
@@ -40,6 +60,10 @@ const ProductDetails = () => {
     }
   };
 
+  if (!product) {
+    return <Typography variant="h6">Loading...</Typography>;
+  }
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
       <Box sx={{ position: "relative" }}>
@@ -53,7 +77,7 @@ const ProductDetails = () => {
           {[...Array(totalSliderItems)].map((_, index) => (
             <img
               key={index}
-              src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1d7353c0-b7e7-4984-8eef-0844f9f84f39/NIKE+ISPA+LINK+AXIS.png"
+              src={product.productImg}
               alt={`Product Image ${index + 1}`}
               style={{ width: "100%", height: "auto" }}
             />
@@ -95,15 +119,13 @@ const ProductDetails = () => {
           color="green"
           sx={{ textTransform: "uppercase", fontWeight: 700 }}
         >
-          Nike Company
+          {product.name}
         </Typography>
         <Typography variant="h4" sx={{ fontWeight: 700, marginY: 2 }}>
-          Fall Limited Edition Sneakers
+          {product.name}
         </Typography>
         <Typography variant="body1" sx={{ lineHeight: 1.7, marginBottom: 2 }}>
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole, they’ll withstand everything
-          the weather can offer.
+          {product.description}
         </Typography>
 
         <Box
@@ -115,19 +137,9 @@ const ProductDetails = () => {
           }}
         >
           <Typography variant="h5" sx={{ fontWeight: 700 }}>
-            ${totalPrice}.00
+            ₹{totalPrice}
           </Typography>
-          <Box
-            sx={{
-              backgroundColor: "rgba(0, 128, 0, 0.1)",
-              color: "green",
-              padding: "2px 10px",
-              borderRadius: 2,
-              fontWeight: 700,
-            }}
-          >
-            50%
-          </Box>
+
           <Typography
             variant="body2"
             sx={{
@@ -136,7 +148,7 @@ const ProductDetails = () => {
               marginLeft: "auto",
             }}
           >
-            $250.00
+            ₹{product.old_price}
           </Typography>
         </Box>
 

@@ -1,51 +1,48 @@
-import React, { useEffect, useState } from "react";
-import "./InspiredProduct.css";
+import { useEffect, useState } from "react";
+import { Grid, Box, Typography, CircularProgress, Alert } from "@mui/material";
 import SingleProductCart from "../SingleProductCart/SingleProductCart";
+
 const InspiredProduct = () => {
-  //This defines a functional component called ProductCategory.
-
   const [products, setProducts] = useState([]);
-  // State to store the products  This creates a state variable products (initially an empty array) and a function setProducts to update it.
-
   const [error, setError] = useState(null);
-  const url = "http://localhost:8000/products/random_8";
+  const [loading, setLoading] = useState(true);
+  const url = "http://localhost:8000/api/admin/products/random_8";
 
   useEffect(() => {
-    //This hook runs the code inside it after the component mounts and whenever the url changes.
-    const fetchData = async (url) => {
-      //This defines an asynchronous function to fetch data from the API.
+    const fetchData = async () => {
       try {
-        const response = await fetch(url); // This makes a request to the API and waits for the response.
-
-        if (!response.ok) {
-          //This checks if the response is not OK (status code is not 2xx). If so, it throws an error.
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json(); // This converts the response to JSON format.
-
-        setProducts(data); //This updates the products state with the fetched data.
+        const response = await fetch(url);
+        const data = await response.json();
+        setProducts(data);
       } catch (error) {
-        //If there's an error during the fetch, this catches it and updates the error state with the error message.
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchData(url);
+    fetchData();
   }, [url]);
 
   return (
-    <>
-      <div className="inspired-products">
-        <div className="container">
-          <br />
-          <div className="inspired-products-grid">
-            {error && <div className="error">{error}</div>}
-            {products.map((item, index) => (
-              <SingleProductCart key={index} product={item} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </>
+    <Box sx={{ padding: 4 }}>
+      <Typography variant="h4" align="center" gutterBottom>
+        Inspired Products
+      </Typography>
+      {error && <Alert severity="error">{error}</Alert>}
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Grid container spacing={4}>
+          {products.map((item, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <SingleProductCart product={item} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Box>
   );
 };
 

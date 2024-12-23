@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import SingleProductCart from "../SingleProductCart/SingleProductCart";
 
-const MenProducts = () => {
+const HomeAndKitchen = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ const MenProducts = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/admin/products/men"
+          "http://localhost:8000/api/admin/products/home_and_kitchen"
         );
         if (!response.ok) throw new Error("Failed to fetch products");
         const data = await response.json();
@@ -73,7 +73,7 @@ const MenProducts = () => {
     <Container maxWidth="lg" sx={{ paddingY: 4 }}>
       <Grid container spacing={4}>
         {products.map((product) => (
-          <Grid item xs={12} sm={6} md={4} key={product.id}>
+          <Grid item xs={12} sm={6} md={4} key={product.product_id}>
             <Paper elevation={3} sx={{ padding: 2 }}>
               <SingleProductCart product={product} />
             </Paper>
@@ -84,4 +84,4 @@ const MenProducts = () => {
   );
 };
 
-export default MenProducts;
+export default HomeAndKitchen;

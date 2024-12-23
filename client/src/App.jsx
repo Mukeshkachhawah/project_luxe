@@ -15,6 +15,7 @@ import WomenProductPage from "./Pages/Women/WomenProductPage";
 import UserProfilePage from "./Pages/UserProfilePage";
 import SignInPage from "./forms/Sign-In/SignInForm";
 import SignUp from "./forms/Sign-Up/SignUp";
+import HomeAndKitchenPage from "./Pages/HomeAndKitchenPage";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/men-products" element={<MenProductPage />} />
         <Route path="/women-products" element={<WomenProductPage />} />
         <Route path="/beauty-products" element={<BeautyPage />} />
+        <Route path="/home-kitchen" element={<HomeAndKitchenPage />} />
         <Route path="/productcheckout" element={<ProductCheckOut />} />
         <Route path="/shopcategory" element={<ShopCategory />} />
         <Route path="/productdetail/_id" element={<ProductDetail />} />

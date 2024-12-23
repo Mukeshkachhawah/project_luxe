@@ -1,17 +1,16 @@
 import HeaderMain from "./../../Components/HeaderMain/HeaderMain";
 import Footer from "./../../Components/Footer/Footer";
-import Beauty from "../../Components/BeautyProducts/BeautyProducts";
 import Section from "./../../Components/Section/Section";
+import BeautyProducts from "../../Components/BeautyProducts/BeautyProducts";
 
 const BeautyPage = () => {
   return (
     <>
       <HeaderMain />
       <Section
-        title={"Beauty's  Collection"}
         pagePath={"Home / Shop / Beauty Fashion"}
+        CardComponent={<BeautyProducts />}
       />
-      <Beauty />
       <Footer />
     </>
   );

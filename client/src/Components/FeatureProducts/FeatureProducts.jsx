@@ -1,11 +1,35 @@
-
+import { useState, useEffect } from "react";
 import { Grid, Box, Typography, CircularProgress } from "@mui/material";
 import SingleProductCart from "../SingleProductCart/SingleProductCart";
-import useFetch from "../../Hooks/FetchApiHook";
+import prodcutApi from "../../api/productApi.js";
 
 const FeatureProducts = () => {
-  const url = "http://localhost:8000/products/random_3";
-  const { data, error } = useFetch(url);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(prodcutApi.RANDOM_3_PRODUCT);
+        console.log("Fetching data from:", prodcutApi.RANDOM_3_PRODUCT);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Box sx={{ padding: 4 }}>
@@ -22,19 +46,18 @@ const FeatureProducts = () => {
       </Typography>
 
       <Grid container spacing={4}>
-        {/* Displaying loading spinner if no data yet */}
         {error ? (
           <Typography color="error" align="center">
             {error}
           </Typography>
-        ) : !data ? (
+        ) : loading ? (
           <Box
             sx={{ display: "flex", justifyContent: "center", width: "100%" }}
           >
             <CircularProgress />
           </Box>
         ) : (
-          data.map((item, index) => (
+          data?.map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <SingleProductCart product={item} />
             </Grid>

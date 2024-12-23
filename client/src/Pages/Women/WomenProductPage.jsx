@@ -12,8 +12,8 @@ const WomenProductPage = () => {
       <Section
         title={"Women’s Fashion Collection"}
         pagePath={"Home / Shop / Women Fashion"}
+        CardComponent={<WomenProduct search={search} />}
       />
-      <WomenProduct search={search} />
       <Footer />
     </>
   );
